@@ -31,14 +31,20 @@
               </li>
               <% if user_signed_in? %>
                 <li>
-                  <%= link_to "User",user_path, class:"nav-link text-light" %>
+                  <%= link_to user_path, class:"nav-link text-light" do %>
+                   <i class="fa-solid fa-users"></i>Users
+                  <% end %>
                 </li>
                 <li>
-                  <%= link_to "Book",book_path, class:"nav-link text-light" %>
+                  <%= link_to book_path, class:"nav-link text-light" do %>
+                   <i class="fa-solid fa-book-open"></i>Books
+                  <% end %>
                 </li>
                 <li>
-                  <!--<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>-->
-                  <%= link_to "ログアウト", destroy_user_session_path, class:"nav-link text-light" %>
+                  <%= link_to destroy_user_session_path, method: :delete, class:"nav-link text-light" do %>
+                    <i class="fa-solid fa-right-from-bracket"></i>Log out
+                  <% end %>
+                  <!--<%= link_to "ログアウト", destroy_user_session_path, class:"nav-link text-light" %>-->
                 </li>
               <% else %>
                 <li>
