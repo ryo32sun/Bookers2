@@ -1,1 +1,17 @@
-<h1>TOP PAGE</h1>
+<div class="container mt-3">
+    <div class="row">
+        <div class="mx-auto">
+            <h1>welcome to <i class="fa-solid fa-book"></i><strong>Bookers!!</strong></h1>
+            <p>In <i class="fa-solid fa-book"></i><strong>Bookers</strong></p>
+            <p>you can share and exchange your opinions , inpressions , and emotions</p>
+            <p>about verious books!</p>
+            <div class="btn-wrapper col-10 mx-auto">
+                <%= link_to "Sign in" ,new_user_session_path, class:"row btn btn-info btn-sm btn-block mb-3"  %>
+                <!--# <button class="row btn btn-info btn-sm btn-block mb-3 sign-in">Log in</button>-->
+                <!--<button class="row btn btn-success btn-sm btn-block sign_up">Sign up</button>-->
+                <%= link_to "Sign up", new_user_registration_path, class:"row btn btn-success btn-sm btn-block" %>
+            </div>
+        </div>
+    </div>
+</div>
+
