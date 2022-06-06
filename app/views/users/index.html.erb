@@ -1,31 +1,42 @@
-<h1>User info</h1>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-3">
+            <h2>User info</h2>
+            <%= image_tag @user.get_profile_image(100,100) %>
+            <table class="table">
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <th>name</th>
+                        <th><%= @user.name %></th>
+                    </tr>
+                    <tr>
+                        <th>introduction</th>
+                        <th><%= @user.introduction %></th>
+                    </tr>
+                </tbody>
+            </table>
+            <!--<div class="row">-->
+                <%= link_to edit_user_path(@user.id) do %>
+                    <span class="btn btn-block btn-outline-dark"><i class="fa-solid fa-user-gear"></i></span>
+                <% end %>
+            <!--</div>-->
+            <h2>New book</h2>
+            <%= form_with model: Book.new do |f| %>
+                <div class="form-group">
+                    <%= f.label :title %>
+                    <%= f.text_field :title ,class:"form-control book_title" %>
+                </div>
+                <div class="form-group">
+                    <%= f.label :body ,"Opinion" %>
+                    <%= f.text_area :body ,class:"form-control book_body" %>
+                </div>
+                <div class="form-group">
+                    <%= f.submit "Create Book" , class:"btn btn-success" %>
+                </div>
+                
+            <% end %>
+        </div>
+    </div>
+</div>
 
-<p>画像</p>
-<div>
-    <p>name</p>
-    <%= @user.name %>
-</div>
-<div>
-    <p>introduction</p>
-    <%= @user.introduction %>
-</div>
-<div>
-    <%= link_to edit_user_path(@user.id) do %>
-        <span class="btn btn-outline-secondary btn-block"><i class="fa-solid fa-user-gear"></i></span>
-    <% end %>
-</div>
-
-<h1>New book</h1>
-<div>
-<%= form_with model: Book.new do |f| %>
-<div>
-<%= f.label :title %><br>
-<%= f.text_field :title %>
-</div>
-<div>
-<%= f.label :body ,"Opinion" %><br>
-<%= f.text_area :body %>
-</div>
-<%= f.submit "Create Book", class:"btn btn-success" %>
-<% end %>
-</div>
