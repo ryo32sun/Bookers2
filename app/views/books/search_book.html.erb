@@ -1,0 +1,25 @@
+<table>
+<tr>
+  <% @books.each do |book| %>
+  
+    <td>
+      <%= link_to user_path(book.user.id) do %>
+        <%= image_tag book.user.get_profile_image(50,50) %>
+      <% end %>
+    </td>
+    <td>
+      <%= link_to book_path(book.id) do %>
+        <%= book.title %>
+      <% end %>
+    </td>
+    <td><%= book.body %></td>
+    <td>
+      <%= link_to search_book_path(keyword: book.category) do %>
+        <%= book.category %>
+      <% end %>
+    </td>
+  <% end %>
+  
+</tr>
+
+</table>

@@ -22,6 +22,7 @@
                         <th></th>
                         <th>Title</th>
                         <th>Opinion</th>
+                        <th>Tag</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +35,7 @@
                                     <%= book.title %>
                                 <% end %></td>
                             <td><%= book.body %></td>
+                            <td><%= link_to book.category, search_book_path(keyword: book.category) %></td>
                         </tr> 
                     <% end %>
                 </tbody>
