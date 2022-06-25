@@ -1,6 +1,10 @@
 class BooksController < ApplicationController
+  
+  helper_method :sort_column, :sort_direction
+  
   def index
-    @books = Book.all
+    # @books = Book.all
+    @books = Book.order("#{sort_column} #{sort_direction}")
     @user = current_user
     @book = Book.new
   end
@@ -52,6 +56,13 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :body)
   end
   
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+  end
+  
+  def sort_column
+    Book.column_names.include?(params[:sort]) ? params[:sort] : 'title'
+  end
   
   
 end
