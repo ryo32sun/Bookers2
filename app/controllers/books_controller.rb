@@ -7,19 +7,29 @@ class BooksController < ApplicationController
     @books = Book.order("#{sort_column} #{sort_direction}")
     @user = current_user
     @book = Book.new
+    @tag_lists = Tag.all
   end
   
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+    tag_list = params[:book][:name].split(',')
     if @book.save
+      @book.save_tag(tag_list)
       flash[:notice] = "You have created book successfully"
       redirect_to book_path(@book.id)
     else
       @user = current_user
       @books = Book.all
+      @tag_lists = Tag.all
       render :index
     end
+  end
+  
+  def search_tag
+    @tag_list = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @books = @tag.books.all
   end
 
   def show
@@ -29,6 +39,7 @@ class BooksController < ApplicationController
   
   def edit
     @book = Book.find(params[:id])
+    @tag_list = @book.tags.pluck(:name).join(',')
     unless @book.user == current_user
       redirect_to books_path
     end
@@ -36,7 +47,9 @@ class BooksController < ApplicationController
   
   def update
     @book = Book.find(params[:id])
+    tag_list = @book.tags.pluck(:name).join(',')
     if @book.update(book_params)
+      @book.save_tag(tag_list)
       flash[:notice] = "You have updated book successfully"
       redirect_to book_path(@book.id)
     else

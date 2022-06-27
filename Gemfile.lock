@@ -248,6 +248,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   devise
+  diff-lcs
   factory_bot_rails
   faker
   image_processing (~> 1.2)
